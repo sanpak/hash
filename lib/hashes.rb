@@ -120,8 +120,17 @@ end
 # can_tweak_sign("We're having a yellow ferret sale for a good cause over at the
 # pet shop!", "Leopard ferrets forever yo") => true
 def can_tweak_sign?(normal_sign, vandalized_sign)
-  
+  normal_sign_count = character_count(normal_sign)
+  vandalized_sign_count = character_count(vandalized_sign)
+  normal_sign_count.all? do |char,count|
+    vandalized_sign_count[char] <= count
+  end
 end
 
 def character_count(str)
+  hash = Hash.new(0)
+  str.chars.each do |letter|
+    hash[letter] += 1
+  end
+  hash
 end
