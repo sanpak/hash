@@ -107,9 +107,11 @@ def biodiversity_index(specimens)
   specimens.each do |speci|
     hash[speci] += 1 unless hash.include?(speci)
   end
+  number_of_species = hash.values.reduce(:+)
+  smallest_population_size = hash.values.min
+  largest_population_size = hash.values.max
 
-  hash.values.reduce(:+)
-
+  number_of_species ** 2 * (smallest_population_size / largest_population_size )
 end
 
 # Define a method that, given the string of a respectable business sign, returns
@@ -118,6 +120,7 @@ end
 # can_tweak_sign("We're having a yellow ferret sale for a good cause over at the
 # pet shop!", "Leopard ferrets forever yo") => true
 def can_tweak_sign?(normal_sign, vandalized_sign)
+  
 end
 
 def character_count(str)
